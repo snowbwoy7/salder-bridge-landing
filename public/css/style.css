@@ -4,8 +4,8 @@
  * exact values sampled from the existing Salderbridge website. Do not rebrand.
  */
 :root {
-  --brand-primary: #243b53;
-  --brand-accent: #c49a50;
+  --brand-primary: #13bdb7;
+  --brand-accent: #cbdc78;
   --text: #17212b;
   --muted: #526170;
   --surface: #ffffff;
@@ -16,7 +16,7 @@
   --font-body: Arial, Helvetica, sans-serif;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 body { margin: 0; color: var(--text); background: var(--surface); font-family: var(--font-body); line-height: 1.65; }
 a { color: inherit; }
 img { max-width: 100%; height: auto; }
@@ -24,10 +24,11 @@ img { max-width: 100%; height: auto; }
 .narrow { max-width: 800px; }
 .skip-link { position: absolute; top: -5rem; left: 1rem; padding: .7rem 1rem; background: var(--surface); z-index: 10; }
 .skip-link:focus { top: 1rem; }
-.site-header { border-bottom: 1px solid var(--border); background: var(--surface); }
+.site-header { position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); background: rgb(255 255 255 / 96%); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .header-inner { min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 .brand { display: inline-flex; align-items: center; text-decoration: none; min-width: 130px; }
-.brand-logo { max-width: 190px; max-height: 62px; object-fit: contain; }
+.brand-logo { display: block; width: min(245px, 38vw); max-height: 72px; object-fit: contain; }
+.brand-fallback { color: var(--brand-primary); }
 .brand-fallback { font-size: 1.3rem; font-weight: 700; }
 nav { display: flex; align-items: center; flex-wrap: wrap; gap: 1.3rem; }
 nav a { text-decoration: none; font-weight: 600; font-size: .94rem; }
@@ -48,7 +49,12 @@ p { margin-top: 0; }
 .button-primary:hover { filter: brightness(1.12); }
 .text-link { font-weight: 700; }
 .care-note { color: var(--muted); font-size: .9rem; }
-.hero-art { min-height: 340px; border-radius: var(--radius); background: var(--surface-muted); border: 1px solid var(--border); display: grid; place-items: center; padding: 2rem; }
+.hero-art { min-height: 340px; border-radius: var(--radius); background: linear-gradient(145deg, #f3fcfb, #fbfced); border: 1px solid #d9f0ed; display: grid; place-items: center; padding: 1.25rem; overflow: hidden; }
+.hero-image { display: block; width: 100%; max-height: 390px; object-fit: contain; border-radius: 10px; }
+.hero-image-fallback { width: 100%; min-height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.2rem; text-align: center; color: var(--brand-primary); }
+.hero-image-fallback[hidden] { display: none; }
+.visual-shield { display: grid; place-items: center; width: 100px; height: 115px; border: 5px solid #cbdc78; border-radius: 48% 48% 55% 55%; color: #13bdb7; font-size: 3rem; font-weight: 800; }
+.visual-orbit { display: none; }
 .asset-needed { color: var(--muted); text-align: center; max-width: 24ch; }
 .section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .section-muted { background: var(--surface-muted); }
@@ -69,7 +75,8 @@ summary { cursor: pointer; font-weight: 700; }
 .footer-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 3rem; }
 .footer-disclaimer { grid-column: 1 / -1; font-size: .88rem; opacity: .9; border-top: 1px solid rgb(255 255 255 / 25%); padding-top: 1.2rem; }
 @media (max-width: 800px) {
-  .header-inner { align-items: flex-start; flex-direction: column; padding-block: 1rem; gap: 1rem; }
+  .header-inner { align-items: flex-start; flex-direction: column; padding-block: .65rem; gap: .45rem; }
+  .brand-logo { max-height: 52px; width: min(210px, 65vw); }
   nav { gap: .8rem 1rem; }
   .hero-grid, .form-layout { grid-template-columns: 1fr; }
   .hero-art { min-height: 220px; }
@@ -77,7 +84,9 @@ summary { cursor: pointer; font-weight: 700; }
 }
 @media (max-width: 480px) {
   .container { width: min(var(--content-width), calc(100% - 1.4rem)); }
-  nav { font-size: .9rem; }
+  nav { font-size: .9rem; gap: .55rem .8rem; }
+  .header-inner { gap: .35rem; }
+  html { scroll-padding-top: 135px; }
   nav .nav-cta { padding: .55rem .7rem; }
   .footer-inner { grid-template-columns: 1fr; }
   .footer-disclaimer { grid-column: auto; }
