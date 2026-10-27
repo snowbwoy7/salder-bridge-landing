@@ -81,6 +81,27 @@ summary { cursor: pointer; font-weight: 700; }
 .social-link:hover, .social-link:focus-visible { background: rgb(255 255 255 / 18%); text-decoration: none; }
 .social-icon { width: 1.1rem; height: 1.1rem; flex: 0 0 auto; }
 .footer-disclaimer { grid-column: 1 / -1; font-size: .88rem; opacity: .9; border-top: 1px solid rgb(255 255 255 / 25%); padding-top: 1.2rem; }
+/* Optional Google Analytics consent panel */
+.analytics-consent[hidden] { display: none; }
+.analytics-consent { position: fixed; z-index: 3000; inset: auto 1rem 1rem; margin-inline: auto; width: min(760px, calc(100% - 2rem)); display: flex; align-items: flex-start; justify-content: space-between; gap: 1.25rem; padding: 1.2rem; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; color: var(--text); box-shadow: 0 12px 38px rgb(0 0 0 / 22%); }
+.analytics-consent-copy { flex: 1 1 auto; min-width: 0; }
+.analytics-consent h2 { margin: 0 0 .45rem; font-size: 1.1rem; }
+.analytics-consent p { margin: 0 0 .55rem; font-size: .9rem; line-height: 1.5; }
+.analytics-consent a { color: #075e9b; text-decoration: underline; }
+.analytics-consent-actions { display: flex; flex: 0 0 auto; flex-direction: column; gap: .5rem; min-width: 145px; }
+.analytics-button, .privacy-settings-button { font: inherit; font-weight: 700; cursor: pointer; border-radius: 7px; padding: .65rem .85rem; }
+.analytics-accept { border: 1px solid var(--brand-primary); background: var(--brand-primary); color: #fff; }
+.analytics-reject { border: 1px solid var(--border); background: #fff; color: var(--text); }
+.analytics-button:focus-visible, .privacy-settings-button:focus-visible { outline: 3px solid var(--brand-accent); outline-offset: 2px; }
+.footer-privacy { grid-column: 1 / -1; margin: 0; }
+.privacy-settings-button { color: #fff; background: transparent; border: 1px solid rgb(255 255 255 / 55%); font-size: .85rem; }
+.privacy-settings-button:hover { background: rgb(255 255 255 / 12%); }
+@media (max-width: 800px) {
+  .analytics-consent { flex-direction: column; gap: .8rem; }
+  .analytics-consent-actions { flex-direction: row; flex-wrap: wrap; width: 100%; }
+  .analytics-button { flex: 1 1 135px; }
+}
+
 @media (max-width: 800px) {
   .header-inner { align-items: flex-start; flex-direction: column; padding-block: .65rem; gap: .45rem; }
   .brand-logo { max-height: 52px; width: min(210px, 65vw); }
